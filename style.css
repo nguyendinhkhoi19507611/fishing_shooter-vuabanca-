@@ -1,0 +1,149 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    overflow: hidden;
+    background: linear-gradient(180deg, #87CEEB 0%, #4682B4 50%, #191970 100%);
+    font-family: 'Arial', sans-serif;
+    user-select: none;
+}
+
+#gameCanvas {
+    display: block;
+    cursor: crosshair;
+    border: 2px solid #FFD700;
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+}
+
+.ui-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 10;
+}
+
+.score-panel {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background: rgba(0, 0, 0, 0.85);
+    color: #FFD700;
+    padding: 20px;
+    border-radius: 15px;
+    border: 3px solid #FFD700;
+    box-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
+    pointer-events: auto;
+    backdrop-filter: blur(10px);
+}
+
+.game-title {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    text-align: center;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+.stat-item {
+    font-size: 16px;
+    margin-bottom: 8px;
+    font-weight: bold;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+.stat-item:last-child {
+    margin-bottom: 0;
+}
+
+.particle {
+    position: absolute;
+    pointer-events: none;
+    border-radius: 50%;
+}
+
+@keyframes bubble {
+    0% { 
+        transform: translateY(100vh) scale(0); 
+        opacity: 0; 
+    }
+    10% { 
+        opacity: 1; 
+    }
+    90% { 
+        opacity: 1; 
+    }
+    100% { 
+        transform: translateY(-100px) scale(1); 
+        opacity: 0; 
+    }
+}
+
+.bubble {
+    position: absolute;
+    background: radial-gradient(circle, rgba(255,255,255,0.4), rgba(135,206,235,0.1));
+    border-radius: 50%;
+    animation: bubble 8s infinite linear;
+    pointer-events: none;
+    box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+@keyframes fadeInOut {
+    0% { 
+        opacity: 0; 
+        transform: translate(-50%, -50%) scale(0.5); 
+    }
+    20% { 
+        opacity: 1; 
+        transform: translate(-50%, -50%) scale(1.1); 
+    }
+    80% { 
+        opacity: 1; 
+        transform: translate(-50%, -50%) scale(1); 
+    }
+    100% { 
+        opacity: 0; 
+        transform: translate(-50%, -50%) scale(0.5); 
+    }
+}
+
+.notification {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 15px 25px;
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: 18px;
+    z-index: 1000;
+    pointer-events: none;
+    animation: fadeInOut 2s ease-in-out forwards;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .score-panel {
+        top: 10px;
+        left: 10px;
+        padding: 15px;
+        font-size: 14px;
+    }
+    
+    .game-title {
+        font-size: 16px;
+        margin-bottom: 10px;
+    }
+    
+    .stat-item {
+        font-size: 14px;
+        margin-bottom: 6px;
+    }
+}
